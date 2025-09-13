@@ -1,0 +1,19 @@
+#!/usr/bin/env php // Shebang: tells the system to run this file with the PHP interpreter
+
+<?php                              // Start of PHP code
+
+use Illuminate\Foundation\Application;         // Import the Laravel Application class
+use Symfony\Component\Console\Input\ArgvInput; // Import the Symfony class for handling command-line input arguments
+
+define('LARAVEL_START', microtime(true));      // Define a constant marking the precise start time of the script
+
+// Register the Composer autoloader...
+require __DIR__ . '/vendor/autoload.php';        // Load Composer's autoloader so classes can be used without manual includes
+
+// Bootstrap Laravel and handle the command...
+/** @var Application $app */                   // Docblock annotation: indicates that $app is an instance of Application
+$app = require_once __DIR__ . '/bootstrap/app.php'; // Bootstrap the Laravel application and get the Application instance
+
+$status = $app->handleCommand(new ArgvInput);  // Pass CLI arguments to Laravel's command handler and capture the exit status
+
+exit($status);                                // Exit the script with the status code returned from the command

@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ApiProductController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShowCarController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,7 +49,6 @@ Route::get('/specific/{keywords}', function (string $keyword) {
     return "Checking for specific keywords!! Works, $keyword";
 })->whereIn("keywords", ["abc", "def", "ghi"]);
 
-
 /*REGEX*/
 
 /*parameter containing only lowercase letters*/
@@ -66,7 +69,6 @@ Route::get('/{lang}/product/{id}', function (string $lang, string $id) {
 Route::get('/search/{keyword}', function (string $keyword) {
     return "Check: $keyword";
 })->where('keyword', '.+');
-
 
 /*named routes*/
 
@@ -113,3 +115,40 @@ Route::get('/sumNum/{numOne}/{numTwo}', function (string $numOne, string $numTwo
     return "$numOne + $numTwo = " . ($numOne + $numTwo);
 })->whereNumber(['numOne', 'numTwo']);
 
+
+
+
+
+
+
+/*controller*/
+Route::get('/car', [CarController::class, 'index']);
+
+Route::controller(CarController::class)->group(function () {
+    Route::get('/car', 'index');
+    Route::get('/car-tire', 'carTire');
+    Route::get('/car-window', 'carWindow');
+});
+
+/*single-action controller (__invokable) - controllers that serves only one purpose/task*/
+Route::get('/showcar/invokable', CarController::class);
+Route::get('/showcar', [CarController::class, 'index']);
+
+Route::get('/upload-data', ShowCarController::class);
+
+//Route::resource('/products', ProductController::class);
+
+//excludes selected methods
+// Route::resource('/products', ProductController::class)->except(['index', 'destroy']);
+
+//shows only selected methods
+//Route::resource('/products', ProductController::class)->only(['index', 'destroy']);
+
+// Route::resource('/products', ProductController::class);
+
+// Route::apiResource('/product-api', ApiProductController::class);
+
+Route::apiResources([
+    'cars-api' => ProductController::class,
+    'products-api' => ApiProductController::class,
+]);

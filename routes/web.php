@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiProductController;
+use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShowCarController;
@@ -152,3 +153,13 @@ Route::apiResources([
     'cars-api' => ProductController::class,
     'products-api' => ApiProductController::class,
 ]);
+
+/*adding 2 nums and subtracting 2 nums from router with controller*/
+//this solution works but will give error when string in given as input
+Route::get('/sum/{num1}/{num2}', [CalculatorController::class, 'sum']);
+Route::get('/subtract/{num1}/{num2}', [CalculatorController::class, 'subtract']);
+
+//this solution works too but will forward to fallback when a string in given as input
+Route::get('/sum/{num1}/{num2}', [CalculatorController::class, 'sum'])->whereNumber(['num1', 'num2']);
+Route::get('/subtract/{num1}/{num2}', [CalculatorController::class, 'subtract'])->whereNumber(['num1', 'num2']);
+

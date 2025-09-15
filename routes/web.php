@@ -3,6 +3,8 @@
 use App\Http\Controllers\ApiProductController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\HelloController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShowCarController;
 use Illuminate\Support\Facades\Route;
@@ -10,8 +12,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $practiceUrl = route('practice.view', ['keyF' => 'first', 'keyL' => 100]);
     dd($practiceUrl);
-
-    return view('welcome');
 });
 
 Route::get('/about', function () {
@@ -163,3 +163,6 @@ Route::get('/subtract/{num1}/{num2}', [CalculatorController::class, 'subtract'])
 Route::get('/sum/{num1}/{num2}', [CalculatorController::class, 'sum'])->whereNumber(['num1', 'num2']);
 Route::get('/subtract/{num1}/{num2}', [CalculatorController::class, 'subtract'])->whereNumber(['num1', 'num2']);
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/hello', [HelloController::class, 'welcome'])->name('hello');

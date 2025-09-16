@@ -15,6 +15,7 @@ class HomeController extends Controller
             'surname' => 'Hasan',
             'job' => "<b> DEV </b>",
             "hobbies" => ['coding', 'gaming'],
+            "country" => "bn"
         ]);
 
         // return view("home.index")
@@ -32,6 +33,9 @@ class HomeController extends Controller
         // if(view::exists('home.index')){
         //     dump('view does not exist!');
         // }
+    }
 
+    public function checkAlert(){
+        return view("challenge.alertKey");
     }
 }

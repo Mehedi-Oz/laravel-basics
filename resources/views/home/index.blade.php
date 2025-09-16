@@ -30,6 +30,66 @@
 
     {{-- This is a blade comment. It is not visible in browser --}}
 
+    @if (true)
+        This will be displayed
+    @endif
+
+    <div>
+        @foreach ($hobbies as $hobby)
+            {{ $loop->iteration }}
+            {{ $hobby }}
+        @endforeach
+    </div>
+
+    <div>
+        @foreach ($hobbies as $hobby)
+            @foreach ($hobbies as $hobby)
+                Child: {{ $loop->depth }}
+                Parent: {{ $loop->parent->depth }}
+            @endforeach
+        @endforeach
+    </div>
+
+    <div>
+        @foreach ($hobbies as $hobby)
+            {{-- {{ dd($loop) }} --}}
+        @endforeach
+    </div>
+
+
+    <div @class(['my-css-class', 'dhaka' => $country === 'bn']) @style(['color : cyan', 'background:green' => $country === 'bn'])>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum laboriosam impedit nobis fugit nostrum facere
+            sunt, eveniet voluptas pariatur ab nisi eius modi exercitationem officiis temporibus similique. Illum
+            officiis laudantium quae ut placeat eum cumque cupiditate recusandae quibusdam facilis quia commodi, totam
+            consectetur, voluptas alias aliquid in cum ab est.</p>
+    </div>
+
+    <div>
+        @include('shared.button', ['color' => 'gray', 'text' => 'weird button'])
+    </div>
+
+    @php
+        $cars = [1, 2, 3, 4, 5, 6];
+    @endphp
+
+    <div>
+        @foreach ($cars as $car)
+            @include('car.view', ['car' => $car])
+        @endforeach
+    </div>
+
+    <div>
+        @each('car.view', $cars, 'car', 'car.empty')
+    </div>
+
+    @php
+
+    @endphp
+
+    {{-- component --}}
+    <x-card />
+
+
 </body>
 
 <script>

@@ -166,3 +166,5 @@ Route::get('/subtract/{num1}/{num2}', [CalculatorController::class, 'subtract'])
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/hello', [HelloController::class, 'welcome'])->name('hello');
+
+Route::get('/alert', [HomeController::class, 'checkAlert'])->name('alertKey');

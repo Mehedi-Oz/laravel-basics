@@ -1,6 +1,29 @@
 <div class="card">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla veniam natus debitis nemo optio dignissimos
-    doloribus excepturi eaque eligendi, earum dicta delectus repellat quas corporis quos assumenda, sapiente
-    consectetur fugiat, officiis quae repellendus quis exercitationem laboriosam? Distinctio sit incidunt, nam earum
-    inventore explicabo mollitia hic, ex assumenda vero ratione esse!
+
+    @if ($slot->isEmpty())
+        Slot Content Is Empty!
+    @else
+        {{ $slot }}
+    @endif
+
+    <div class="card-header">
+        {{ $title ?? '' }}
+    </div>
+
+    <div class="card-footer">
+        {{ $footer ?? '' }}
+    </div>
+
 </div>
+
+
+//component slot
+
+A component slot is a placeholder where you can insert custom content when you use the component.
+
+It allows you to pass different pieces of content into a pre-defined sections of a component making the component
+flexible and reusable.
+
+TYPES OF SLOTS
+1. DEFAULT SLOTS
+2. NAMED SLOTS

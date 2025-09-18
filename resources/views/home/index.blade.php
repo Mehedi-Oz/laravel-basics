@@ -87,8 +87,16 @@
     @endphp
 
     {{-- component --}}
-    <x-card />
+    {{-- Anonymouse Component --}}
+    {{-- <x-card>
+        <x-slot name="title">This is Car Title</x-slot>
+        <x-slot name="footer">This is Car Footer</x-slot>
+    </x-card> --}}
 
+    <x-card>
+        <x-slot:title>This is Car Title</x-slot:title>
+        <x-slot:footer>This is Car Footer</x-slot:footer>
+    </x-card>
 
 </body>
 

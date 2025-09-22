@@ -1,21 +1,31 @@
-<div class="card">
+@props(['color' => 'yellow', 'bgColor' => 'white'])
+
+{{-- {{ dump($attributes) }} --}}
+
+<div {{ $attributes->class("card card-text-$color card-bg-$bgColor")->merge(['lang' => 'ar']) }}>
+    <div {{ $title->attributes->class('card-header') }}>{{ $title }}</div>
+
+    {{-- <div {{ $title->attributes->merge(['class' => 'card-header']) }}>{{ $title }}</div> --}} {{-- same as before, outputs same things --}}
+
+    {{-- 
+        - merge() helps override or add multiple attributes.
+        - class() is a shortcut for just managing the class attribute. 
+    --}}
 
     @if ($slot->isEmpty())
-        Slot Content Is Empty!
+        <p>Please provide some content</p>
     @else
         {{ $slot }}
     @endif
 
-    <div class="card-header">
-        {{ $title ?? '' }}
-    </div>
-
-    <div class="card-footer">
-        {{ $footer ?? '' }}
-    </div>
-
+    <div class="card-footer">{{ $footer }}</div>
 </div>
 
+
+
+
+
+{{-- 
 
 //component slot
 
@@ -27,3 +37,7 @@ flexible and reusable.
 TYPES OF SLOTS
 1. DEFAULT SLOTS
 2. NAMED SLOTS
+
+
+
+--}}

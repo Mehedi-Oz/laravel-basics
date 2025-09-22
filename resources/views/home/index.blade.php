@@ -82,21 +82,28 @@
         @each('car.view', $cars, 'car', 'car.empty')
     </div>
 
-    @php
 
+    {{-- COMPONENTS --}}
+    {{-- <x-card /> --}}
+    <x-button />
+
+    @php
+        $color = 'cyan';
+        $bgColor = 'gray';
     @endphp
 
-    {{-- component --}}
-    {{-- Anonymouse Component --}}
-    {{-- <x-card>
-        <x-slot name="title">This is Car Title</x-slot>
-        <x-slot name="footer">This is Car Footer</x-slot>
-    </x-card> --}}
-
-    <x-card>
-        <x-slot:title>This is Car Title</x-slot:title>
-        <x-slot:footer>This is Car Footer</x-slot:footer>
+    <x-card :$color :$bgColor lang="bn" class="card-rounded"> {{-- works if the variable name is same --}}
+        {{-- <x-card :color="$color" :bgColor="$bgColor"> --}} {{-- similar as before, works --}}
+        {{-- <x-card color="red" bgColor="black"> --}} {{-- similar as before, works --}}
+        <x-slot:title class="card-header-blue">Car title 01</x-slot:title>
+        Card SLOT Content 01
+        <x-slot:footer>Car footer 01</x-slot:footer>
     </x-card>
+
+    <x-search-form />
+
+    <x-test-component>something in test</x-test-component> {{-- inline component, not very common  --}}
+ 
 
 </body>
 

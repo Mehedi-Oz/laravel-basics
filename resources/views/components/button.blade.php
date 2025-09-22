@@ -1,0 +1,3 @@
+<button>
+    Stupid Button
+</button>

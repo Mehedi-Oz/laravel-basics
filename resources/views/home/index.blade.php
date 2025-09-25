@@ -1,114 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout title="Home">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-</head>
+    <!-- Home Slider -->
+    <section class="hero-slider">
+        <!-- Carousel wrapper -->
+        <div class="hero-slides">
+            <!-- Item 1 -->
+            <div class="hero-slide">
+                <div class="container">
+                    <div class="slide-content">
+                        <h1 class="hero-slider-title">
+                            Buy <strong>The Best Cars</strong> <br />
+                            in your region
+                        </h1>
+                        <div class="hero-slider-content">
+                            <p>
+                                Use powerful search tool to find your desired cars based on
+                                multiple search criteria: Maker, Model, Year, Price Range, Car
+                                Type, etc...
+                            </p>
+                            <button class="btn btn-hero-slider">Find the car</button>
+                        </div>
+                    </div>
+                    <div class="slide-image">
+                        <img src="/img/car-png-39071.png" alt="" class="img-responsive" />
+                    </div>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="hero-slide">
+                <div class="flex container">
+                    <div class="slide-content">
+                        <h2 class="hero-slider-title">
+                            Do you want to <br />
+                            <strong>sell your car?</strong>
+                        </h2>
+                        <div class="hero-slider-content">
+                            <p>
+                                Submit your car in our user friendly interface, describe it,
+                                upload photos and the perfect buyer will find it...
+                            </p>
 
-<body>
+                            <button class="btn btn-hero-slider">Add Your Car</button>
+                        </div>
+                    </div>
+                    <div class="slide-image">
+                        <img src="/img/car-png-39071.png" alt="" class="img-responsive" />
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="hero-slide-prev">
+                <svg style="width: 18px" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 1 1 5l4 4" />
+                </svg>
+                <span class="sr-only">Previous</span>
+            </button>
+            <button type="button" class="hero-slide-next">
+                <svg style="width: 18px" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 9 4-4-4-4" />
+                </svg>
+                <span class="sr-only">Next</span>
+            </button>
+        </div>
+    </section>
+    <!--/ Home Slider -->
 
-    <h4>HELLO WORLD FROM HOME</h4>
+    <main>
+        <x-search-form />
 
-    <p>My name is {{ $name }} {{ $surname }}</p>
-
-    <p> Year : {{ $year }}</p>
-
-    <p>{{ strtoupper($name . ' ' . $surname) }}</p>
-
-    <p>{{ Illuminate\Foundation\Application::VERSION }}</p>
-
-    <p>{{ PHP_VERSION }}</p>
-
-    <p>{!! $job !!}</p>
-
-    <p>{{ Illuminate\Support\Js::from($hobbies) }}</p>
-
-    <!-- This is a html comment. It is visible in browser -->
-
-    {{-- This is a blade comment. It is not visible in browser --}}
-
-    @if (true)
-        This will be displayed
-    @endif
-
-    <div>
-        @foreach ($hobbies as $hobby)
-            {{ $loop->iteration }}
-            {{ $hobby }}
-        @endforeach
-    </div>
-
-    <div>
-        @foreach ($hobbies as $hobby)
-            @foreach ($hobbies as $hobby)
-                Child: {{ $loop->depth }}
-                Parent: {{ $loop->parent->depth }}
-            @endforeach
-        @endforeach
-    </div>
-
-    <div>
-        @foreach ($hobbies as $hobby)
-            {{-- {{ dd($loop) }} --}}
-        @endforeach
-    </div>
-
-
-    <div @class(['my-css-class', 'dhaka' => $country === 'bn']) @style(['color : cyan', 'background:green' => $country === 'bn'])>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum laboriosam impedit nobis fugit nostrum facere
-            sunt, eveniet voluptas pariatur ab nisi eius modi exercitationem officiis temporibus similique. Illum
-            officiis laudantium quae ut placeat eum cumque cupiditate recusandae quibusdam facilis quia commodi, totam
-            consectetur, voluptas alias aliquid in cum ab est.</p>
-    </div>
-
-    <div>
-        @include('shared.button', ['color' => 'gray', 'text' => 'weird button'])
-    </div>
-
-    @php
-        $cars = [1, 2, 3, 4, 5, 6];
-    @endphp
-
-    <div>
-        @foreach ($cars as $car)
-            @include('car.view', ['car' => $car])
-        @endforeach
-    </div>
-
-    <div>
-        @each('car.view', $cars, 'car', 'car.empty')
-    </div>
-
-
-    {{-- COMPONENTS --}}
-    {{-- <x-card /> --}}
-    <x-button />
-
-    @php
-        $color = 'cyan';
-        $bgColor = 'gray';
-    @endphp
-
-    <x-card :$color :$bgColor lang="bn" class="card-rounded"> {{-- works if the variable name is same --}}
-        {{-- <x-card :color="$color" :bgColor="$bgColor"> --}} {{-- similar as before, works --}}
-        {{-- <x-card color="red" bgColor="black"> --}} {{-- similar as before, works --}}
-        <x-slot:title class="card-header-blue">Car title 01</x-slot:title>
-        Card SLOT Content 01
-        <x-slot:footer>Car footer 01</x-slot:footer>
-    </x-card>
-
-    <x-search-form />
-
-    <x-test-component>something in test</x-test-component> {{-- inline component, not very common  --}}
- 
-
-</body>
-
-<script>
-    const hobbies = {{ Illuminate\Support\Js::from($hobbies) }};
-</script>
-
-</html>
+        <!-- New Cars -->
+        <section>
+            <div class="container">
+                <h2>Latest Added Cars</h2>
+                <div class="car-items-listing">
+                    @for ($i = 0; $i < 12; $i++)
+                        <x-car-item />
+                    @endfor
+                </div>
+            </div>
+        </section>
+        <!--/ New Cars -->
+    </main>
+</x-app-layout>

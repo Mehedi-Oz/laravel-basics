@@ -22,9 +22,11 @@ class TestComponent extends Component
     public function render(): View|Closure|string
     {
         return <<<'blade'
+
 <div {{$attributes}}>
-    {{$slot}}
+   {{$slot}}
 </div>
+
 blade;
     }
 }
